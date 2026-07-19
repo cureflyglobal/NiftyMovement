@@ -1,0 +1,23 @@
+import type { ReactNode } from 'react'
+import type { DashboardCardData } from '../types/market'
+import { StatusPill } from './StatusPill'
+
+interface MetricCardProps extends DashboardCardData {
+  icon: ReactNode
+}
+
+export function MetricCard({ title, value, change, detail, direction = 'neutral', updatedAt, icon }: MetricCardProps) {
+  return (
+    <article className="panel group min-h-52 p-5 transition duration-200 hover:-translate-y-0.5 hover:border-slate-600">
+      <div className="flex items-start justify-between gap-3">
+        <div><p className="text-sm font-medium text-slate-200">{title}</p><p className="mt-1 text-xs text-slate-500">{detail}</p></div>
+        <span className="grid size-9 place-items-center rounded-xl bg-slate-800 text-sky-300">{icon}</span>
+      </div>
+      <div className="mt-8 flex items-end justify-between gap-4">
+        <p className="text-3xl font-semibold tracking-tight text-white">{value}</p>
+        {change && <StatusPill label={change} direction={direction} />}
+      </div>
+      <div className="mt-7 border-t border-slate-800 pt-3 text-xs text-slate-500">{updatedAt ?? 'No update available'}</div>
+    </article>
+  )
+}

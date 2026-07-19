@@ -1,0 +1,23 @@
+import type { DashboardCardData } from '../types/market'
+
+// Replace these presentation values with data returned by live market adapters.
+export const dashboardCards: Record<string, DashboardCardData> = {
+  spot: {
+    title: 'Nifty Spot', value: '—', detail: 'Live price, VWAP & opening range', updatedAt: 'Awaiting market feed',
+  },
+  futures: {
+    title: 'Nifty Futures', value: '—', detail: 'Price, OI change & build-up', updatedAt: 'Awaiting market feed',
+  },
+  options: {
+    title: 'Option Chain', value: '—', detail: 'Key Call/Put OI levels & PCR', updatedAt: 'Awaiting market feed',
+  },
+  bankNifty: {
+    title: 'Bank Nifty', value: '—', detail: 'Index alignment & relative strength', updatedAt: 'Awaiting market feed',
+  },
+  vix: {
+    title: 'India VIX', value: '—', detail: 'Volatility regime & day range', updatedAt: 'Awaiting market feed',
+  },
+  global: {
+    title: 'Global Markets', value: '—', detail: 'Gift Nifty, US & Asian market cues', updatedAt: 'Awaiting market feed',
+  },
+}

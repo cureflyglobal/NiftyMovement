@@ -1,0 +1,13 @@
+import type { NiftySpotResponse } from '../../shared/niftySpot'
+
+export interface NiftySpotQuote extends Omit<NiftySpotResponse, 'lastUpdated'> {
+  lastUpdated: Date
+}
+
+export async function fetchNiftySpotQuote(signal?: AbortSignal): Promise<NiftySpotQuote> {
+  const response = await fetch('/api/nifty/spot', { signal })
+  if (!response.ok) throw new Error(`Nifty spot service is temporarily unavailable (${response.status}).`)
+
+  const payload: NiftySpotResponse = await response.json()
+  return { ...payload, lastUpdated: new Date(payload.lastUpdated) }
+}

@@ -1,0 +1,9 @@
+export interface NiftySpotResponse {
+  currentPrice: number
+  previousClose: number
+  changePercent: number
+  open: number
+  high: number
+  low: number
+  lastUpdated: string
+}

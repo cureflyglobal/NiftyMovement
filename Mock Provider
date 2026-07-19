@@ -1,0 +1,27 @@
+import type { NiftySpotResponse } from '../../shared/niftySpot'
+
+export interface NiftySpotProvider {
+  getSpot(): Promise<NiftySpotResponse>
+}
+
+export class MockNiftySpotProvider implements NiftySpotProvider {
+  async getSpot(): Promise<NiftySpotResponse> {
+    const previousClose = 24_875.45
+    const currentPrice = 25_034.80
+
+    return {
+      currentPrice,
+      previousClose,
+      changePercent: Number((((currentPrice - previousClose) / previousClose) * 100).toFixed(2)),
+      open: 24_910.20,
+      high: 25_062.35,
+      low: 24_884.10,
+      lastUpdated: new Date().toISOString(),
+    }
+  }
+}
+
+// Swap this factory to a real provider later; the route and frontend stay unchanged.
+export function createNiftySpotProvider(): NiftySpotProvider {
+  return new MockNiftySpotProvider()
+}
